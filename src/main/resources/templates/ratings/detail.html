@@ -1,0 +1,30 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Staff Detail</title>
+  </head>
+  <body>
+    <h1>Staff Detail</h1>
+
+    <p><strong>Name:</strong> <span th:text="${rating.name}"></span></p>
+    <p><strong>Email:</strong> <span th:text="${rating.email}"></span></p>
+    <p><strong>Role:</strong> <span th:text="${rating.roleType}"></span></p>
+    <p><strong>Clarity:</strong> <span th:text="${rating.clarity}"></span></p>
+    <p><strong>Niceness:</strong> <span th:text="${rating.niceness}"></span></p>
+    <p>
+      <strong>Knowledgeable:</strong>
+      <span th:text="${rating.knowledgeableScore}"></span>
+    </p>
+    <p>
+      <strong>Overall:</strong> <span th:text="${rating.overallScore}"></span>
+    </p>
+    <p><strong>Comment:</strong> <span th:text="${rating.comment}"></span></p>
+
+    <a th:href="@{/ratings}">Back to List</a>
+    <a th:href="@{/ratings/{id}/edit(id=${rating.id})}">Edit</a>
+
+    <form th:action="@{/ratings/{id}/delete(id=${rating.id})}" method="post">
+      <button type="submit">Delete</button>
+    </form>
+  </body>
+</html>

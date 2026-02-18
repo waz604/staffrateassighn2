@@ -1,0 +1,37 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Staff Ratings</title>
+  </head>
+  <body>
+    <h1>Staff Ratings</h1>
+
+    <a th:href="@{/ratings/new}">Add New Rating</a>
+
+    <table border="1">
+      <tr>
+        <th>Name</th>
+        <th>Role</th>
+        <th>Overall Score</th>
+        <th>Actions</th>
+      </tr>
+
+      <tr th:each="rating : ${ratings}">
+        <td th:text="${rating.name}"></td>
+        <td th:text="${rating.roleType}"></td>
+        <td th:text="${#numbers.formatDecimal(rating.overallScore, 1, 1)}"></td>
+        <td>
+          <a th:href="@{/ratings/{id}(id=${rating.id})}">View</a>
+          <a th:href="@{/ratings/{id}/edit(id=${rating.id})}">Edit</a>
+          <form
+            th:action="@{/ratings/{id}/delete(id=${rating.id})}"
+            method="post"
+            style="display: inline"
+          >
+            <button type="submit">Delete</button>
+          </form>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
